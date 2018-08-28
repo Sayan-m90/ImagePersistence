@@ -1,0 +1,154 @@
+/*****************************************************************************/
+Software for computing persistent signature of input point cloud 
+/*****************************************************************************/
+
+The binaries are distributed for Ubuntu Linux 64bit;
+
+=================================
+DESCRIPTION
+=================================
+
+This software can compute computing persistence of an input image.
+This software is developed based on the following paper submitted in ICCV 2017
+
+	* Paper: Improved Image Classification using Topological Persistence
+
+=================================
+USAGE
+=================================
+-------------------------------------------------------------------------------
+./pers -i <input_image> -o <output_file> -n <nearest_neighbors> -s <index_to_collapse> -v <length_topological_signature> [-options]
+-------------------------------------------------------------------------------
+
+Usage:
+  -h				Help information;
+
+  -l				License information;
+
+  -i arg			Input image file name;
+
+  -o arg			Output file name to which the topological signature is appended (created if none exist);
+
+  -n arg 			Number of nearest neighbors to connect each point to form initial graph (default value: 12);
+
+  -s arg 			Index of vertex to be collapsed. Every sth vertex is collapsed to it's nearest neighbor (default value: 5);
+
+  -v arg			The length of topological feature vector to append (default value: 10);
+
+  -b arg 			The label of the image file. If this is passed, it will be appended to the final vector v and added to the file.
+=================================
+INPUT FILE: Any valid Image file
+=================================
+
+=================================
+OUTPUT FILE AND VECTOR:
+=================================
+
+If output file exist:
+Append a topological signature vector of length 'v' to the end of file.
+
+If output file does not exist:
+Create a new file with a single line containing the topological signature vector of length 'v'.
+The persistence software produces one output file: 
+1) <input_filename_pers> : the file contains the output persistence.
+
+Given an image file, the software converts each pixel to a point in R^5 and calculates it's persistence to output the length of the birth and death time of the class of one dimensional homology. The longest 'v' barcodes are appended to the output file.
+	
+	Example: Given an image foo.png, and a output file foo.csv containing two pre-existing vectors:
+	91	85	78	74	73	70	66	63	59	59	3
+	15	15	14	14	14	14	14	14	14	13	2
+	The program can be run as:
+	./pers -i foo.png -o foo.csv -n 15 -s 12 -v 10 -b 1
+	To give the final foo.csv as:
+	*****************************************************************************		
+	* 91	85	78	74	73	70	66	63	59	59	3
+	* 15	15	14	14	14	14	14	14	14	13	2
+	* 95	65	74	72	72	64	64	64	58	55	1
+	*****************************************************************************
+=================================
+IMAGE CLASSIFICATION
+=================================
+
+To do actual classification of images, we have introduced some helper scripts to extract features, generate model and classify images. These files are given in the folder named scripts (See Read-Me inside these folders). Tutorials on using these scripts on  sample databases are given in the sample folder.
+
+=================================
+LEGAL TERMS
+=================================
+
+THIS SOFTWARE IS PROVIDED "AS-IS". THERE IS NO WARRANTY OF ANY KIND. 
+NEITHER THE AUTHORS NOR THE INSITUTE WILL BE LIABLE FOR 
+ANY DAMAGES OF ANY KIND, EVEN IF ADVISED OF SUCH POSSIBILITY.
+
+This software was developed (and is copyrighted by) the Anonymous authors. Please do not redistribute this software. 
+This program is for academic research use only. This software uses the  
+Boost library (www.boost.org) and Ann library
+(www.cs.umd.edu/~mount/ANN/) which are covered under their own licenses.
+
+ 
+---------------------------------------------------------------------------
+
+The Boost library's license 
+(which applies to the Boost library ONLY and NOT to this program itself) is 
+as follows:
+
+LICENSE
+---------------------------------------------------------------------------
+Boost Software License - Version 1.0 - August 17th, 2003
+
+Permission is hereby granted, free of charge, to any person or organization
+obtaining a copy of the software and accompanying documentation covered by
+this license (the "Software") to use, reproduce, display, distribute,
+execute, and transmit the Software, and to prepare derivative works of the
+Software, and to permit third-parties to whom the Software is furnished to
+do so, all subject to the following:
+
+The copyright notices in the Software and this entire statement, including
+the above license grant, this restriction and the following disclaimer,
+must be included in all copies of the Software, in whole or in part, and
+all derivative works of the Software, unless such copies or derivative
+works are solely in the form of machine-executable object code generated by
+a source language processor.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT. IN NO EVENT
+SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
+FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+---------------------------------------------------------------------------
+
+ANN library's license
+(which applies to the ANN library ONLY and NOT to this program itself) is 
+as follows:
+
+LICENSE
+---------------------------------------------------------------------------
+The ANN Library (all versions) is provided under the terms and
+conditions of the GNU Lesser General Public Library, which is stated
+below.  It can also be found at:
+
+   http://www.gnu.org/copyleft/lesser.html
+---------------------------------------------------------------------------
+
+OPENCV library's license
+(which applies to the ANN library ONLY and NOT to this program itself) is 
+as follows:
+
+LICENSE
+---------------------------------------------------------------------------
+
+
+By downloading, copying, installing or using the software you agree to this license. If you do not agree to this license, do not download, install, copy or use the software.
+License Agreement
+For Open Source Computer Vision Library
+(3-clause BSD License)
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    Neither the names of the copyright holders nor the names of the contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+This software is provided by the copyright holders and contributors “as is” and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall copyright holders or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
+---------------------------------------------------------------------------

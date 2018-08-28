@@ -1,0 +1,26 @@
+extractall.sh:
+Takes each image in the folder 256_ObjectCategories and generate their topological signature in stat.csv
+To use:
+1. Keep the script and folder 256_OnjectCategories in the same folder.
+2. Change parameters in line 10 as necessary for other datasets.
+3. Run  ./extractall.sh
+
+/**********************************************************************************************************************/
+
+caltech.sh: Given the Dataset CalTech-256, generates topological feature of all images and stores it in a csv file.
+Run on any GNU shellscript
+To Run:
+1. Keep in a folder with Caltech-256 Dataset. and the software pers. 
+2. Run using ./caltech.sh
+3. Outputs stat.csv containing topological signature for each image.
+
+
+/**********************************************************************************************************************/
+
+caltech.m: Given the input stat.csv, classify the last topological vector in the csv file. If images are supplied, then classifies based on Fisher Vector as well.
+To Run:
+1. Install VLFEAT http://www.vlfeat.org/install-matlab.html to use Fisher Vector
+2. Run the script in matlab
+3. Supply input .csv file and image folder as asked for.
+
+For more details,and stepwise tutorial, please look into the sample pdf files.

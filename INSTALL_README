@@ -1,0 +1,26 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Software for computing persistence of input point cloud 
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+	To compile, you need to have the following libraries installed:
+
+		* Boost (www.boost.org) 
+		* ANN (http://www.cs.umd.edu/~mount/ANN/) 
+		* OpenCV (http://opencv.org/) 
+
+	Packages are available for Ubuntu Linux.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Compilation
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+After Boost and ANN have been installed,
+	1. Open a terminal
+	2. Go to folder location src
+	3. Run: ./build.sh
+	4. The binary file named 'pers' should be created
+	5. For instructions on how to use it, please go to SOFTWARE_README
+A pre-built binary for Ubuntu has been included in the folder named 'pre-built'
+ 
